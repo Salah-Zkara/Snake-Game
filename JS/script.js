@@ -4,12 +4,17 @@ const scale=15
 const rows=cnv.height/scale
 const columns=cnv.width/scale
 const score=document.getElementById("score")
+
+const up=document.getElementById("up")
+const down=document.getElementById("down")
+const left=document.getElementById("left")
+const right=document.getElementById("right")
+
 var snake
 var tempresult = true
 var D
 const imgN= new Image()
 imgN.src = "IMAGES/egg.png"
-console.log(imgN)
 
 function Egg() {
     this.x
@@ -22,8 +27,6 @@ function Egg() {
         imgN.onload = cntx.drawImage(imgN,this.x,this.y,15,17.25) 
     }
 }
-
-
 
 function Snake() {
     this.x=rows*scale/2
@@ -40,7 +43,6 @@ function Snake() {
             cntx.fillRect(this.cordS[i].x,this.cordS[i].y,scale,scale)
             
         }
-
         cntx.fillRect(this.x,this.y,scale,scale)
     }
     this.update=function() {
@@ -63,8 +65,6 @@ function Snake() {
             alert('Votre score est: '+this.total)
             location.reload()
         }
-
-
     }
     this.changeD=function(D) {
         if (D==="ArrowLeft") {
@@ -94,7 +94,6 @@ function Snake() {
                 this.ySpeed=-scale   
             }
         }
-
     }
     this.grow=function(egg) {
         if (this.x===egg.x && this.y===egg.y) {
@@ -109,14 +108,11 @@ function Spawn() {
     egg= new Egg()
     snake=new Snake()
     egg.L()
-    console.log(egg)
     setInterval(upd,150)
     snake.draw()
     alert("appuyer sur 'OK' pour commencez!!")
 }
 Spawn()
-
-
 
 function upd() {
     snake.update()
@@ -129,5 +125,22 @@ function upd() {
 addEventListener("keydown",mouvements)
 function mouvements(e) {
     snake.changeD(e.code)
+}
 
+up.addEventListener("click",upF,true  )
+down.addEventListener("click",downF,true  )
+left.addEventListener("click",leftF,true  )
+right.addEventListener("click",rightF,true  )
+
+function upF() {
+    snake.changeD("ArrowUp")
+}
+function downF() {
+    snake.changeD("ArrowDown")
+}
+function leftF() {
+    snake.changeD("ArrowLeft")
+}
+function rightF() {
+    snake.changeD("ArrowRight")
 }
