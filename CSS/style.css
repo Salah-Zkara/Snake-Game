@@ -4,3 +4,7 @@
 body{
     background-color: gray;
 }
+#imgs{
+    flex-wrap: wrap;
+    margin: 2px;
+}

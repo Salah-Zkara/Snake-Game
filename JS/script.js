@@ -1,8 +1,9 @@
 const cnv=document.getElementById("cnv")
 const cntx=cnv.getContext("2d")
-const scale=20
+const scale=15
 const rows=cnv.height/scale
 const columns=cnv.width/scale
+const score=document.getElementById("score")
 var snake
 var tempresult = true
 var D
@@ -18,7 +19,7 @@ function Egg() {
         this.y=(Math.floor(Math.random() * columns-1) +1 ) * scale
     }
     this.drawegg=function() {
-        imgN.onload = cntx.drawImage(imgN,this.x,this.y,20,23) 
+        imgN.onload = cntx.drawImage(imgN,this.x,this.y,15,17.25) 
     }
 }
 
@@ -122,6 +123,8 @@ function upd() {
     egg.drawegg()
     snake.draw()
     snake.grow(egg)
+    console.log(snake.total)
+    score.innerText='score: '+snake.total
 }
 addEventListener("keydown",mouvements)
 function mouvements(e) {
